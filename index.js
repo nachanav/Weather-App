@@ -26,10 +26,10 @@ function switchTab(newTab) {
             searchForm.classList.add("active");
         }
         else {
-            //main pehle search wale tab pr tha, ab your weather tab visible karna h 
+            //First at seach tab, now want to visible weather tab (main pehle search wale tab pr tha, ab your weather tab visible karna h)
             searchForm.classList.remove("active");
             userInfoContainer.classList.remove("active");
-            //ab main your weather tab me aagya hu, toh weather bhi display karna poadega, so let's check local storage first
+            //Now at weather tab, then we have display weather info (ab main your weather tab me aagya hu, toh weather bhi display karna poadega), so let's check local storage first
             //for coordinates, if we haved saved them there.
             getfromSessionStorage();
         }
@@ -50,7 +50,7 @@ searchTab.addEventListener("click", () => {
 function getfromSessionStorage() {
     const localCoordinates = sessionStorage.getItem("user-coordinates");
     if(!localCoordinates) {
-        //agar local coordinates nahi mile
+        //If local coordinates not get
         grantAccessContainer.classList.add("active");
     }
     else {
@@ -62,7 +62,7 @@ function getfromSessionStorage() {
 
 async function fetchUserWeatherInfo(coordinates) {
     const {lat, lon} = coordinates;
-    // make grantcontainer invisible
+    //make grantcontainer invisible
     grantAccessContainer.classList.remove("active");
     //make loader visible
     loadingScreen.classList.add("active");
@@ -81,7 +81,6 @@ async function fetchUserWeatherInfo(coordinates) {
     catch(error) {
         loadingScreen.classList.remove("active");
         //HW
-
     }
 
 }
@@ -171,7 +170,7 @@ async function fetchSearchWeatherInfo(city) {
         renderWeatherInfo(data);
     }
     catch(error) {
-        //hW
+        //HW
         loadingScreen.classList.remove("active");
         apiErrorContainer.classList.add("active");
         apiErrorMessage.innerText = `${error?.message}`;
